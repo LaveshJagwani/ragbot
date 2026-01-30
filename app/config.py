@@ -2,20 +2,17 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 
-from langchain_huggingface import HuggingFaceInferenceEmbeddings
+from langchain_huggingface import HuggingFaceEndpointEmbeddings
 from langchain_pinecone import PineconeVectorStore
 from langchain_groq import ChatGroq
 
 load_dotenv(dotenv_path=Path(".env"))
 
 # ---- Embeddings ----
-from langchain_huggingface import HuggingFaceInferenceEmbeddings
-
-embeddings = HuggingFaceInferenceEmbeddings(
-    api_key=os.getenv("HUGGINGFACE_API_KEY"),
-    model_name="sentence-transformers/all-MiniLM-L6-v2"
+embeddings = HuggingFaceEndpointEmbeddings(
+    huggingfacehub_api_token=os.getenv("HUGGINGFACE_API_KEY"),
+    model="sentence-transformers/all-MiniLM-L6-v2"
 )
-
 
 # ---- Vector Store ----
 vectorstore = PineconeVectorStore(
