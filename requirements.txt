@@ -9,3 +9,5 @@ pinecone
 python-dotenv
 pypdf
 tiktoken
+python-multipart
+langchain-text-splitters
